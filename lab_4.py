@@ -1,5 +1,5 @@
 import datetime
-
+#date
 x = datetime.datetime.now()
 txt = ""
 txt += str(x.year) + " "
@@ -14,7 +14,28 @@ print("microsecond : " + str(x.microsecond))
 dif = (x.day) - (x.day - 1)
 print(dif)
 print(dif * 86400)
+
 #generator
+n = int(input("Insert number N : "))
+s = [i **2 for i in range(1, n)]
+print(s)
+m = int(input("Insert : "))
+x = [i for i in range(1, m) if i % 2 == 0]
+print(x)
+def gen(c):
+    x = [i for i in range(1, c) if i % 3 == 0 or i % 4 == 0]
+    print(x)
+
+c = int( input("Insert : "))
+gen(c)
+a = int(input("Insert a : "))
+b = int(input("Insert b : "))
+squares = [i **2 for i in range(a, b)]
+for j in squares:
+    print(j)
+n1 = int(input("Insert n1 : "))
+g = [i for i in range(0, n1 + 1)]
+print(g[::-1])
 
 #math
 import math
