@@ -186,11 +186,6 @@ def roundline(canvas, color, start, end, radius=1):
         pygame.draw.circle(canvas, color, (x, y), radius)
 
 
-def eraser(canvas, color, start, end):
-    rect = pygame.Rect(start, (end[0] - start[0], end[1] - start[1]))
-    pygame.draw.rect(canvas, color, rect, 2)
-
-
 def draw_circle(canvas, color, center, radius):
     pygame.draw.circle(canvas, color, center, radius)
 
@@ -222,7 +217,7 @@ try:
             pygame.draw.circle(screen, color, e.pos, radius)
             draw_on = True
 
-        
+
 
             # Start drawing shapes
             if e.button == 1:
@@ -268,6 +263,7 @@ except StopIteration:
 
 # Quit
 pygame.quit()
+
 
 # SNAKE
 import pygame
