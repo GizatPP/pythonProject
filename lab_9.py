@@ -1,5 +1,4 @@
-
-#racer
+# racer
 # Imports
 import pygame, sys
 from pygame.locals import *
@@ -38,6 +37,7 @@ background = pygame.image.load("AnimatedStreet.png")
 DISPLAYSURF = pygame.display.set_mode((775, 600))
 DISPLAYSURF.fill(WHITE)
 pygame.display.set_caption("Game")
+
 
 # NEW CLASS OF COIN
 class Coin(pygame.sprite.Sprite):
@@ -97,7 +97,6 @@ P1 = Player()
 E1 = Enemy()
 C1 = Coin()
 
-
 # Creating Sprites Groups
 enemies = pygame.sprite.Group()
 enemies.add(E1)
@@ -135,7 +134,7 @@ while True:
         DISPLAYSURF.blit(entity.image, entity.rect)
         entity.move()
 
-    #WHEN COIN COLLIDE WITH P1 IT SHOULD BE DISSAPPEAR
+    # WHEN COIN COLLIDE WITH P1 IT SHOULD BE DISSAPPEAR
     if pygame.sprite.spritecollideany(P1, coins):
         pygame.mixer.Sound('coin.wav').play()
         COUNTER += 1
@@ -158,8 +157,8 @@ while True:
 
     pygame.display.update()
     FramePerSec.tick(FPS)
-    
-#paint
+
+# paint
 import pygame
 import random
 import math
@@ -176,6 +175,7 @@ last_pos = (0, 0)
 # Radius of the Brush
 radius = 5
 
+
 def roundline(canvas, color, start, end, radius=1):
     Xaxis = end[0] - start[0]
     Yaxis = end[1] - start[1]
@@ -185,16 +185,20 @@ def roundline(canvas, color, start, end, radius=1):
         y = int(start[1] + float(i) / dist * Yaxis)
         pygame.draw.circle(canvas, color, (x, y), radius)
 
+
 def eraser(canvas, color, start, end):
     rect = pygame.Rect(start, (end[0] - start[0], end[1] - start[1]))
     pygame.draw.rect(canvas, color, rect, 2)
 
+
 def draw_circle(canvas, color, center, radius):
     pygame.draw.circle(canvas, color, center, radius)
+
 
 def draw_rectangle(canvas, color, start, end):
     rect = pygame.Rect(start, (end[0] - start[0], end[1] - start[1]))
     pygame.draw.rect(canvas, color, rect, 2)
+
 
 def draw_triangle(canvas, color, start, end):
     x1, y1 = start
@@ -203,51 +207,38 @@ def draw_triangle(canvas, color, start, end):
     y3 = y2
     pygame.draw.polygon(canvas, color, [(x1, y1), (x2, y2), (x3, y3)])
 
-try :
-    while True :
+
+try:
+    while True:
         e = pygame.event.wait()
 
-        if e.type == pygame.QUIT :
+        if e.type == pygame.QUIT:
             raise StopIteration
 
-        if e.type == pygame.MOUSEBUTTONDOWN :
+        if e.type == pygame.MOUSEBUTTONDOWN:
             # Selecting random Color Code
             color = (random.randrange(256), random.randrange(256), random.randrange(256))
             # Draw a single circle wheneven mouse is clicked down.
             pygame.draw.circle(screen, color, e.pos, radius)
             draw_on = True
 
-            # if e.type == pygame.KEYDOWN :
-            #     start_pos = e.pos
-            #     shape_type = 'circle'
-            # if e.type == pygame.KEYUP :
-            #     start_pos = e.pos
-            #     shape_type = 'eraser'
-            # if e.type == pygame.K_LEFT :
-            #     start_pos = e.pos
-            #     shape_type = 'rectangle'
-            # if e.type == pygame.K_RIGHT:
-            #     start_pos = e.pos
-            #     shape_type = 'triangle'
+        
 
-
-             # Start drawing shapes
+            # Start drawing shapes
             if e.button == 1:
                 start_pos = e.pos
                 shape_type = 'circle'
-            elif e.button == 3: # Right mouse button
+            elif e.button == 3:  # Right mouse button
                 start_pos = e.pos
                 shape_type = 'rectangle'
-            elif e.button == 2: # Middle mouse button
+            elif e.button == 2:  # Middle mouse button
                 start_pos = e.pos
                 shape_type = 'triangle'
 
-            elif e.type == pygame.K_UP: # Middle mouse button
-                start_pos = e.pos
-                shape_type = 'eraser'
+
 
         # When mouse button released it will stop drawing
-        if e.type == pygame.MOUSEBUTTONUP :
+        if e.type == pygame.MOUSEBUTTONUP:
             draw_on = False
 
             # Finish drawing shapes
@@ -261,26 +252,24 @@ try :
             elif shape_type == 'triangle':
                 end_pos = e.pos
                 draw_triangle(screen, color, start_pos, end_pos)
-            elif shape_type == 'eraser':
-                end_pos = e.pos
-                draw_rectangle(screen, (0, 0, 0), start_pos, end_pos)
+
 
         # It will draw a continuous circle with the help of roundline function.
-        if e.type == pygame.MOUSEMOTION :
-            if draw_on :
+        if e.type == pygame.MOUSEMOTION:
+            if draw_on:
                 pygame.draw.circle(screen, color, e.pos, radius)
                 roundline(screen, color, e.pos, last_pos, radius)
             last_pos = e.pos
 
         pygame.display.flip()
 
-except StopIteration :
+except StopIteration:
     pass
 
 # Quit
 pygame.quit()
 
-#SNAKE
+# SNAKE
 import pygame
 import time
 import random
@@ -288,7 +277,6 @@ import random
 pygame.init()
 
 yellow = (255, 255, 102)
-
 
 dis_width = 600
 dis_height = 400
@@ -308,12 +296,15 @@ score_font = pygame.font.SysFont("comicsansms", 35)
 def Your_score(score):
     value = score_font.render("Your Score: " + str(score), True, BLACK)
     dis.blit(value, [0, 0])
-types_of_food = [5, 10] #5-adds 5 score;10-adds 10 score
-val = random.randint(0,1)
+
+
+types_of_food = [5, 10]  # 5-adds 5 score;10-adds 10 score
+val = random.randint(0, 1)
+
 
 def our_snake(snake_block, snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+        pygame.draw.rect(dis, BLACK, [x[0], x[1], snake_block, snake_block])
 
 
 def message(msg, color):
@@ -344,7 +335,7 @@ def gameLoop():
             message("You Lost!", BLACK)
             Your_score(Length_of_snake - 1)
             pygame.display.update()
-            
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
@@ -367,7 +358,7 @@ def gameLoop():
         x1 += x1_change
         y1 += y1_change
         dis.fill(yellow)
-        pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
+        pygame.draw.rect(dis, GREEN, [foodx, foody, snake_block, snake_block])
         snake_Head = []
         snake_Head.append(x1)
         snake_Head.append(y1)
