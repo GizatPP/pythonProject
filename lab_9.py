@@ -168,7 +168,7 @@ import math
 screen = pygame.display.set_mode((900, 700))
 
 # Setting Title
-pygame.display.set_caption('GFG Paint')
+pygame.display.set_caption('PAINT GAME')
 
 draw_on = False
 last_pos = (0, 0)
